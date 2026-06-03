@@ -1,0 +1,71 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "products"
+    label: "Products"
+    folder: "content/products"
+    create: true
+    slug: "{{fields.id}}"
+    fields:
+      - { label: "Product ID", name: "id", widget: "string", hint: "Lowercase, no spaces. e.g. tr11, ms31. Used as the filename." }
+      - { label: "Product Name", name: "name", widget: "string", hint: "e.g. TR-11" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "Circuit Breakers"
+          - "Micro Switches"
+          - "Rocker Switches"
+          - "Foot Switches"
+      - { label: "Specifications", name: "specs", widget: "string", hint: "e.g. 0.25A–16A, 240V AC, Single pole, Push-to-reset" }
+      - { label: "Description", name: "description", widget: "text" }
+      - label: "Certifications"
+        name: "certifications"
+        widget: "list"
+        hint: "One certification per line, e.g. UL-1077"
+      - { label: "Datasheet PDF", name: "datasheet", widget: "file", required: false, hint: "Upload the PDF datasheet. Leave blank if not available." }
+      - { label: "Product Image", name: "image", widget: "image", required: false }
+
+  - name: "pages"
+    label: "Page Content"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "content/home.md"
+        fields:
+          - { label: "Hero Headline", name: "hero_headline", widget: "string" }
+          - { label: "Hero Subheading", name: "hero_subheading", widget: "text" }
+          - label: "Stats Bar"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Value", name: "value", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+
+      - label: "About Page"
+        name: "about"
+        file: "content/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Network Page"
+        name: "network"
+        file: "content/network.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Product Manifest"
+        name: "manifest"
+        file: "content/products-manifest.json"
+        fields:
+          - label: "Product Slugs"
+            name: "slugs"
+            widget: "list"
+            hint: "The slug (filename without .md) of every product to display on the Products page. Add new slugs here after creating new products above."

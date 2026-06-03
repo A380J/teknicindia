@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://teknicindia.com/sitemap.xml
